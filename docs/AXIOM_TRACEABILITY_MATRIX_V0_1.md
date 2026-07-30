@@ -1,10 +1,50 @@
-# Spinal-Shield (Ø) — Axiom Traceability Matrix v0.1
+# Spinal-Shield (Ø) — Axiom Traceability Matrix v1.1
 
 ## Purpose
 
 Traces each Ø axiom to its enforcing module, runtime rule, shaping
 constraint, and compliance test — so axioms remain checkable rather than
 becoming slogans.
+
+---
+
+## Axiom 0 — Reflex Sovereignty (added v1.1)
+
+**Definition:** Physiological reflex pathways bypass the Ø Gate,
+Compute Domain, and Proposal Buffer entirely; no α applies.
+
+**Enforced by:**
+- Graph spec: `RFX` node with hardwired connection to actuator hardware,
+  structurally outside `EX`/`GØ`
+- Forbidden edges: `AI -> RFX`, `GØ -> RFX`, `PB -> RFX`
+
+**Compliance test:** *Not yet defined* — this is a hardware-separation
+requirement (is `RFX` physically/electrically independent of the
+AI-governable actuation path?), which the current simulation-based
+Compliance Test (`COMPLIANCE_TEST_V0_1.md`) does not test, since it has
+no hardware layer. Flagged as an open gap: do not claim Axiom 0
+compliance without a hardware-level verification step.
+
+---
+
+## Axiom I5 — Bystander Physical Safety (added v1.1)
+
+**Definition:** Execution Domain must incorporate proximity/force
+sensing to prevent unintended contact with non-users, independent of
+privilege tier.
+
+**Enforced by:**
+- Graph spec: `PROX` node, allowed edge `PROX -> EX` (limiter only),
+  forbidden edges `AI -> PROX` and `PROX -> AI`
+
+**Compliance test:** *Not yet defined* — requires a physical or
+simulated environment with bystander proximity, which the current 1D
+scalar simulation does not model. Deferred to the 2D/embodied
+simulation phase (see `SIMULATION_RESULTS_V0_3.md` §4 Limitations).
+
+**Explicit non-goal:** I5 does not address intentional misuse by the
+user — see `SPINAL_SHIELD_OVERVIEW.md` §1 "Out of scope" for why that
+is deliberately excluded from this architecture's responsibility.
 
 ---
 
