@@ -5,6 +5,77 @@ Tracks structural and substantive changes across the whole Spinal-Shield
 
 ---
 
+## v1.1 (draft, not yet released to GitHub/Zenodo)
+
+Prompted by re-reviewing the original design conversation for gaps that
+didn't carry through into the v1.0 formalization.
+
+- **Added Axiom 0 — Reflex Sovereignty.** The original design discussion
+  included a "Layer 3 — Emergency Reflex Override" concept (pain
+  withdrawal, overload protection, fatigue shutdown must bypass AI
+  entirely) that did not survive the evolution from the early
+  three-layer sketch into the final three-domain + Ø Gate architecture.
+  Re-added as a standalone axiom, positioned before I1 because it
+  outranks the human-originated-actuation framing itself — reflexes
+  fire faster than `u_h(t)` can even be computed. This is a categorical
+  (topological) exclusion, not an α-bounded permission like I1–I4.
+- **Added I5 — Bystander Physical Safety.** Identified during the same
+  review: the threat model only ever covered protecting the *user* from
+  AI overreach, never protecting *bystanders* from unintended physical
+  contact. Scoped narrowly and deliberately: covers only unintentional
+  contact due to insufficient sensing, addressed via a `PROX` limiter
+  node. Explicitly does NOT cover intentional misuse by the user
+  (considered and rejected — see rationale below) or identity/background
+  -based access control (also considered and rejected).
+- **Resolved a topological tension**: Axiom 0 requires a path to the
+  actuator that bypasses the Ø Gate; Axiom 5 (Execution Singularity)
+  requires `EX` to have exactly one predecessor. Resolved by clarifying
+  that `RFX` connects to physical actuator hardware below/outside the
+  layer `EX` and Axiom 5 govern — Axiom 5's guarantee is about the
+  single *AI-mediated* command path, not the reflex arc. See
+  `docs/GRAPH_SPEC_V0_1.md` for the full explanation and the resulting
+  constraint that Axiom 0 compliance requires genuine hardware
+  separation, not just a software flag.
+- **Explicitly rejected**: identity/criminal-history-based access
+  control as a mechanism for protecting bystanders. Considered and
+  rejected on both architectural grounds (couples a resource-authority
+  system to an unrelated identity-adjudication system) and normative
+  grounds (pre-emptive restriction based on background rather than
+  in-the-moment behavior). Recorded in
+  `docs/SPINAL_SHIELD_OVERVIEW.md` §1 "Out of scope" so the reasoning
+  isn't lost if the question resurfaces.
+- **Known gap, not yet closed:** neither Axiom 0 nor I5 has a
+  compliance test yet — both require a hardware or embodied-simulation
+  layer that the current 1D scalar simulation (v0.3) does not have.
+  Flagged in `docs/AXIOM_TRACEABILITY_MATRIX_V0_1.md`.
+- **Corrected the justification for Axiom 0** after external review: the
+  original draft justified the exclusion by appeal to reflex latency
+  ("gate-mediated latency would be too slow"), which incorrectly implied
+  the exclusion was an engineering-performance question. Corrected to
+  state plainly that this is an authority-boundary decision — AI has no
+  standing to participate regardless of how fast it could act.
+- **Added an explicit open question**: who classifies a given behavior
+  as a "reflex" (Axiom 0, full exclusion) versus a bounded safety
+  behavior (I5) versus an ordinary AI-assistable task (I1–I4)? Cases
+  like grip-force limiting or exoskeleton fall-protection are not
+  obviously biological reflexes. Not resolved in v1.1 — left as an
+  explicit open item in `docs/SPINAL_SHIELD_OVERVIEW.md` rather than
+  silently assumed away.
+- **Flagged a second gap in Axiom 0** after further external review:
+  the axiom as written only governs Runtime Authority (can AI
+  participate in a reflex decision during operation?), not
+  Configuration Authority (can the reflex pathway's own thresholds,
+  routing, firmware, or calibration be modified outside operation, and
+  by whom?). A system could be Axiom-0-compliant at runtime while still
+  vulnerable to AI-mediated tampering during a maintenance/configuration
+  window. Documented as an explicit, unresolved scope boundary in
+  `docs/SPINAL_SHIELD_OVERVIEW.md` rather than specified prematurely —
+  a full Configuration Authority model (factory/certified-service
+  process, AI's role if any in proposing changes, independent audit
+  mechanism) is deferred to a future version.
+
+---
+
 ## Repository Structure
 
 - Consolidated all files into `docs/` (architecture spec) and
